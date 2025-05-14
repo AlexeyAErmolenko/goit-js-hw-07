@@ -1,7 +1,5 @@
 // Завдання 2
 // Напиши скрипт для створення галереї зображень на основі масиву даних. HTML містить список ul.gallery.
-// <ul class="gallery"></ul>
-
 // Використовуй масив об'єктів images для створення елементів <img>, вкладених в <li>.
 
 // Ти можеш створити й додати HTML-елементи, використовуючи document.createElement() і elem.append() або шаблонні рядки і elem.insertAdjacentHTML().
@@ -42,10 +40,18 @@ const images = [
     alt: "Lighthouse Coast Sea",
   },
 ];
-images.forEach((element) => {
-  const image = document.createElement("img");
-  image.src = element.url;
-  image.alt = element.alt;
-  // console.log(image); // <img src="https://picsum.photos/id/11/320/240" alt="Nature" />
-  document.querySelector(".gallery").append(image);
-});
+
+function createLiImage(image) {
+  const liEl = document.createElement("li");
+  const imageEl = document.createElement("img");
+  {
+    imageEl.src = image.url;
+    imageEl.alt = image.alt;
+    imageEl.width = 360;
+    imageEl.height = 300;
+  }
+  liEl.append(imageEl);
+  return liEl;
+}
+
+document.querySelector(".gallery").append(...images.map(createLiImage));

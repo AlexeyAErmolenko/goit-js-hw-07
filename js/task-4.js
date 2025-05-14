@@ -25,7 +25,7 @@ function handleSubmit(event) {
   const password = form.elements.password.value.trim();
 
   if (email === "" || password === "") {
-    return console.log("Alert");
+    return alert("Invalid input!");
   }
 
   console.log(`Email: ${email}, Password: ${password}`);
